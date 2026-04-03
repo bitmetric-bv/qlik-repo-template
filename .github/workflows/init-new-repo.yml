@@ -1,0 +1,15 @@
+name: Init New Repository
+
+on:
+  create:
+
+jobs:
+  init-repo:
+    if: github.event.ref_type == 'repository'
+
+    uses: bitmetric-bv/qlik-git-automation/.github/workflows/init-repo.yml@main
+    with:
+      repo_name: ${{ github.event.repository.name }}
+      org_name: ${{ github.repository_owner }}
+    secrets:
+      GH_TOKEN: ${{ secrets.AUTOMATION_PAT }}
